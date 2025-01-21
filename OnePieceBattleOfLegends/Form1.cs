@@ -16,6 +16,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -77,12 +78,8 @@ namespace OnePieceBattleOfLegends
 
             // Create image.
             Image newImage = Properties.Resources.bg;
-
-            // Create Point for upper-left corner of image.
-            Point ulCorner = new Point(0, 0);
-
             // Draw image to screen.
-            e.Graphics.DrawImage(newImage, ulCorner);
+            e.Graphics.DrawImage(newImage, 0, 0);
 
             //Luffy
             //luffy rectangle
@@ -146,7 +143,7 @@ namespace OnePieceBattleOfLegends
             e.Graphics.DrawArc(luffyPen, luffyBody.X + 17, luffyBody.Y - 25, 7, 15, 85+5, 95);
             //hair
             luffyPen.Color = Color.Black;
-            e.Graphics.DrawArc(luffyPen, luffyBody.X - 8, luffyBody.Y - 25, 7, 1, -25, -60);
+            e.Graphics.DrawArc(luffyPen, luffyBody.X - 8, luffyBody.Y - 25, 7, 1, 45, 80);
             e.Graphics.DrawArc(luffyPen, luffyBody.X - 1, luffyBody.Y - 25, 3, 3, 20, 70);
             e.Graphics.DrawArc(luffyPen, luffyBody.X + 5, luffyBody.Y - 20, 1, 5, 20, 70);
             e.Graphics.DrawArc(luffyPen, luffyBody.X + 10, luffyBody.Y - 23, 1, 5, 20, 70);
@@ -159,7 +156,6 @@ namespace OnePieceBattleOfLegends
             e.Graphics.FillEllipse(luffyBrush, luffyBody.X - 7, luffyBody.Y - 25, luffyBody.Width + 20, luffyBody.Height - 25);
             luffyBrush.Color = Color.FromArgb(255, 192, 51, 60);
             e.Graphics.FillRectangle(luffyBrush, luffyBody.X-1, luffyBody.Y - 26, luffyBody.Width + 7, luffyBody.Height - 30);
-
         }
     }
-}
+}   
