@@ -16,6 +16,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.Linq;
 using System.Text;
@@ -33,6 +34,7 @@ namespace OnePieceBattleOfLegends
         //Rectangles
         Rectangle ground = new Rectangle(0, 333, 800, 30);
         Rectangle luffyBody = new Rectangle(120, 260, 15, 35);
+        Rectangle kaidoBody = new Rectangle(620, 175, 25, 95);
 
         //brushes
         SolidBrush luffyBrush = new SolidBrush(Color.Red);
@@ -137,14 +139,14 @@ namespace OnePieceBattleOfLegends
             e.Graphics.DrawLine(luffyPen, luffyBody.X+luffyBody.Width+13, luffyBody.Y + 27, luffyBody.X+luffyBody.Width+20, luffyBody.Y + 17);
             e.Graphics.DrawLine(luffyPen, luffyBody.X + luffyBody.Width + 18, luffyBody.Y + 15, luffyBody.X + luffyBody.Width + 25, luffyBody.Y + 18);
             //head
-            luffyPen.Color = Color.FromArgb(255, 238, 184, 146);
+            luffyPen.Color = Color.FromArgb(100, 50, 50, 50);
             luffyPen.Width = 20;
             e.Graphics.DrawArc(luffyPen, luffyBody.X + 7, luffyBody.Y - 25, 10, 15, 80, 105);
+            luffyPen.Color = Color.FromArgb(255, 238, 184, 146);
             e.Graphics.DrawArc(luffyPen, luffyBody.X + 17, luffyBody.Y - 25, 7, 15, 85+5, 95);
             //hair
             luffyPen.Color = Color.Black;
-            e.Graphics.DrawArc(luffyPen, luffyBody.X - 8, luffyBody.Y - 25, 7, 1, 45, 80);
-            e.Graphics.DrawArc(luffyPen, luffyBody.X - 1, luffyBody.Y - 25, 3, 3, 20, 70);
+            e.Graphics.DrawArc(luffyPen, luffyBody.X + 7, luffyBody.Y - 18, 3, 1, -300, 200);
             e.Graphics.DrawArc(luffyPen, luffyBody.X + 5, luffyBody.Y - 20, 1, 5, 20, 70);
             e.Graphics.DrawArc(luffyPen, luffyBody.X + 10, luffyBody.Y - 23, 1, 5, 20, 70);
             e.Graphics.DrawArc(luffyPen, luffyBody.X + 15, luffyBody.Y - 18, 1, 3, 20, 70);
@@ -155,7 +157,21 @@ namespace OnePieceBattleOfLegends
             luffyBrush.Color = Color.FromArgb(255, 235, 200, 95);
             e.Graphics.FillEllipse(luffyBrush, luffyBody.X - 7, luffyBody.Y - 25, luffyBody.Width + 20, luffyBody.Height - 25);
             luffyBrush.Color = Color.FromArgb(255, 192, 51, 60);
-            e.Graphics.FillRectangle(luffyBrush, luffyBody.X-1, luffyBody.Y - 26, luffyBody.Width + 7, luffyBody.Height - 30);
+            e.Graphics.FillRectangle(luffyBrush, luffyBody.X-1, luffyBody.Y - 27, luffyBody.Width + 7, luffyBody.Height - 30);
+            //footwear
+            luffyBrush.Color = Color.FromArgb(255, 215, 190, 149);
+            luffyPen.Color = Color.Black;
+            luffyPen.Width = 1;
+            e.Graphics.FillRectangle(luffyBrush, 108, 330, 14, 3);
+            e.Graphics.DrawRectangle(luffyPen, 108, 330, 14, 3);
+            e.Graphics.FillRectangle(luffyBrush, 138, 330, 14, 3);
+            e.Graphics.DrawRectangle(luffyPen, 138, 330, 14, 3);
+
+            //kaido
+            kaidoBrush.Color = Color.FromArgb(255, 150, 240, 255);
+            e.Graphics.FillRectangle(kaidoBrush, kaidoBody);
+            e.Graphics.FillPie(kaidoBrush, kaidoBody.X - 8, kaidoBody.Y + 10, kaidoBody.Width+15, kaidoBody.Height, 60, 45);
+            e.Graphics.FillPie(kaidoBrush, kaidoBody.X-5, kaidoBody.Y + 40, kaidoBody.Width+30, kaidoBody.Height-30, 90, 75);
         }
     }
 }   
