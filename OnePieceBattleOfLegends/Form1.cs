@@ -36,6 +36,12 @@ namespace OnePieceBattleOfLegends
         Rectangle luffyBody = new Rectangle(120, 260, 15, 35);
         Rectangle kaidoBody = new Rectangle(620, 175, 25, 95);
 
+        //Triangles
+        PointF point;
+        PointF point1;
+        PointF point2;
+        PointF point3;
+
         //brushes
         SolidBrush luffyBrush = new SolidBrush(Color.Red);
         SolidBrush kaidoBrush = new SolidBrush(Color.BurlyWood);
@@ -55,6 +61,10 @@ namespace OnePieceBattleOfLegends
         public Form1()
         {
             InitializeComponent();
+            point = new PointF(kaidoBody.X+25, kaidoBody.Y + 145);
+            point1 = new PointF(kaidoBody.X+100, kaidoBody.Y + 150);
+            point2 = new PointF(kaidoBody.X+100, kaidoBody.Y + 160);
+            point3 = new PointF(kaidoBody.X+25, kaidoBody.Y + 170);
         }
 
 
@@ -167,11 +177,60 @@ namespace OnePieceBattleOfLegends
             e.Graphics.FillRectangle(luffyBrush, 138, 330, 14, 3);
             e.Graphics.DrawRectangle(luffyPen, 138, 330, 14, 3);
 
-            //kaido
-            kaidoBrush.Color = Color.FromArgb(255, 150, 240, 255);
+            //kaido (main)
+            kaidoBrush.Color = Color.FromArgb(255, 41, 131, 181);
             e.Graphics.FillRectangle(kaidoBrush, kaidoBody);
-            e.Graphics.FillPie(kaidoBrush, kaidoBody.X - 8, kaidoBody.Y + 10, kaidoBody.Width+15, kaidoBody.Height, 60, 45);
-            e.Graphics.FillPie(kaidoBrush, kaidoBody.X-5, kaidoBody.Y + 40, kaidoBody.Width+30, kaidoBody.Height-30, 90, 75);
+            e.Graphics.FillPie(kaidoBrush, kaidoBody.X - 8, kaidoBody.Y + 10, kaidoBody.Width + 15, kaidoBody.Height, 60, 45);
+            e.Graphics.FillPie(kaidoBrush, kaidoBody.X, kaidoBody.Y + 43, kaidoBody.Width + 30, kaidoBody.Height - 40, 90, 45);
+            e.Graphics.FillRectangle(kaidoBrush, kaidoBody.X+20, kaidoBody.Y + 80, kaidoBody.Width + 30, kaidoBody.Width);
+            e.Graphics.FillPie(kaidoBrush, kaidoBody.X+40, kaidoBody.Y + 80, kaidoBody.Width + 30, kaidoBody.Height - 35, -90, 90);
+            e.Graphics.FillPie(kaidoBrush, kaidoBody.X+40, kaidoBody.Y + 90, kaidoBody.Width + 30, kaidoBody.Height - 45, 90, -90);
+            e.Graphics.FillRectangle(kaidoBrush, kaidoBody.X+70, kaidoBody.Y + 100, kaidoBody.Width, kaidoBody.Height - 80);
+            e.Graphics.FillRectangle(kaidoBrush, kaidoBody.X+20, kaidoBody.Y + 115, kaidoBody.Width + 30, kaidoBody.Width);
+            e.Graphics.FillPie(kaidoBrush, kaidoBody.X-3, kaidoBody.Y + 115, kaidoBody.Width + 30, kaidoBody.Height - 45, -90, -90);
+            e.Graphics.FillPie(kaidoBrush, kaidoBody.X, kaidoBody.Y + 120, kaidoBody.Width + 30, kaidoBody.Height - 45, 90, 90);
+            //tail
+            e.Graphics.FillRectangle(kaidoBrush, kaidoBody.X, kaidoBody.Y + 130, kaidoBody.Width+5, kaidoBody.Height - 80);
+            e.Graphics.FillPolygon(kaidoBrush, new PointF[] { point, point1, point2, point3});
+            kaidoBrush.Color = Color.Black;
+            e.Graphics.FillEllipse(kaidoBrush, kaidoBody.X + 95, kaidoBody.Y + 148, 25, 15);
+            point = new PointF(kaidoBody.X + 113, kaidoBody.Y + 148);
+            point1 = new PointF(kaidoBody.X + 113, kaidoBody.Y + 160);
+            point2= new PointF(kaidoBody.X + 135, kaidoBody.Y + 155);
+            e.Graphics.FillPolygon(kaidoBrush, new PointF[] { point, point1, point2 });
+            //scales
+            kaidoBrush.Color = Color.FromArgb(255, 250, 223, 155);
+            e.Graphics.FillRectangle(kaidoBrush, kaidoBody.X, kaidoBody.Y, kaidoBody.Width - 10, kaidoBody.Height);
+            e.Graphics.FillPie(kaidoBrush, kaidoBody.X - 8, kaidoBody.Y + 10, kaidoBody.Width, kaidoBody.Height, 60, 45);
+            e.Graphics.FillRectangle(kaidoBrush, kaidoBody.X + 5, kaidoBody.Y + 90, kaidoBody.Width + 40, kaidoBody.Width-10);
+            e.Graphics.FillPie(kaidoBrush, kaidoBody.X + 40, kaidoBody.Y + 90, kaidoBody.Width + 20, kaidoBody.Height - 45, -90, 90);
+            e.Graphics.FillPie(kaidoBrush, kaidoBody.X + 40, kaidoBody.Y + 90, kaidoBody.Width + 20, kaidoBody.Height - 55, 90, -90);
+            e.Graphics.FillRectangle(kaidoBrush, kaidoBody.X + 20, kaidoBody.Y + 115, kaidoBody.Width + 30, kaidoBody.Width-10);
+            e.Graphics.FillPie(kaidoBrush, kaidoBody.X - 3, kaidoBody.Y + 115, kaidoBody.Width + 20, kaidoBody.Height - 45, -90, -90);
+            e.Graphics.FillPie(kaidoBrush, kaidoBody.X, kaidoBody.Y + 130, kaidoBody.Width + 20, kaidoBody.Height - 55, 90, 90);
+            e.Graphics.FillRectangle(kaidoBrush, kaidoBody.X, kaidoBody.Y + 130, kaidoBody.Width-5, kaidoBody.Height - 70);
+            point = new PointF(kaidoBody.X + 20, kaidoBody.Y + 155);
+            point1 = new PointF(kaidoBody.X + 95, kaidoBody.Y + 155);
+            point2 = new PointF(kaidoBody.X + 95, kaidoBody.Y + 160);
+            point3 = new PointF(kaidoBody.X + 20, kaidoBody.Y + 170);
+            e.Graphics.FillPolygon(kaidoBrush, new PointF[] { point, point1, point2, point3 });
+            //face
+            kaidoBrush.Color = Color.FromArgb(255, 41, 131, 181);
+            point2 = new PointF(kaidoBody.X + 15, kaidoBody.Y + 10);
+            point1 = new PointF(kaidoBody.X - 40, kaidoBody.Y);
+            point = new PointF(kaidoBody.X - 40, kaidoBody.Y - 15);
+            point3 = new PointF(kaidoBody.X + 15, kaidoBody.Y - 50);
+            e.Graphics.FillPolygon(kaidoBrush, new PointF[] { point, point1, point2, point3 });
+            e.Graphics.FillEllipse(kaidoBrush, kaidoBody.X, kaidoBody.Y - 45, kaidoBody.Width, kaidoBody.Y - 120);
+            //mouth
+            kaidoBrush.Color = Color.Red;
+            point2 = new PointF(kaidoBody.X - 5, kaidoBody.Y - 5);
+            point1 = new PointF(kaidoBody.X - 40, kaidoBody.Y - 5);
+            point = new PointF(kaidoBody.X - 40, kaidoBody.Y - 20);
+            point3 = new PointF(kaidoBody.X - 5, kaidoBody.Y - 20);
+            //e.Graphics.FillPolygon(kaidoBrush, new PointF[] { point, point1, point2, point3 });
+            //kaidoBrush.Color = Color.Green;
+            //e.Graphics.FillEllipse(kaidoBrush, kaidoBody.X - 18, kaidoBody.Y - 22, 15, 15);
         }
     }
 }   
