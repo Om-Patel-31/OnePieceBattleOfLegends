@@ -221,16 +221,72 @@ namespace OnePieceBattleOfLegends
             point = new PointF(kaidoBody.X - 40, kaidoBody.Y - 15);
             point3 = new PointF(kaidoBody.X + 15, kaidoBody.Y - 50);
             e.Graphics.FillPolygon(kaidoBrush, new PointF[] { point, point1, point2, point3 });
-            e.Graphics.FillEllipse(kaidoBrush, kaidoBody.X, kaidoBody.Y - 45, kaidoBody.Width, kaidoBody.Y - 120);
+            e.Graphics.FillEllipse(kaidoBrush, kaidoBody.X - 40, kaidoBody.Y - 25, kaidoBody.Width - 10, 15);
+            //hair
+            kaidoBrush.Color = Color.Black;
+            point2 = new PointF(kaidoBody.X + 15, kaidoBody.Y - 50);
+            point1 = new PointF(kaidoBody.X + 5, kaidoBody.Y - 50);
+            point = new PointF(kaidoBody.X + 5, kaidoBody.Y + 10);
+            point3 = new PointF(kaidoBody.X + 30, kaidoBody.Y + 10);
+            e.Graphics.FillPolygon(kaidoBrush, new PointF[] { point, point1, point2, point3 });
+            //
+            point2 = new PointF(kaidoBody.X + 40, kaidoBody.Y + 50);
+            point1 = new PointF(kaidoBody.X + 15, kaidoBody.Y + 50);
+            point = new PointF(kaidoBody.X + 5, kaidoBody.Y + 10);
+            point3 = new PointF(kaidoBody.X + 30, kaidoBody.Y + 10);
+            e.Graphics.FillPolygon(kaidoBrush, new PointF[] { point, point1, point2, point3 });
+            //
+            e.Graphics.FillRectangle(kaidoBrush, kaidoBody.X + 15, kaidoBody.Y + 50, 25, 40);
+            //
+            point2 = new PointF(kaidoBody.X + 40, kaidoBody.Y + 85);
+            point1 = new PointF(kaidoBody.X + 35, kaidoBody.Y + 125);
+            point = new PointF(kaidoBody.X + 15, kaidoBody.Y + 85);
+            e.Graphics.FillPolygon(kaidoBrush, new PointF[] { point, point1, point2});
             //mouth
             kaidoBrush.Color = Color.Red;
-            point2 = new PointF(kaidoBody.X - 5, kaidoBody.Y - 5);
-            point1 = new PointF(kaidoBody.X - 40, kaidoBody.Y - 5);
-            point = new PointF(kaidoBody.X - 40, kaidoBody.Y - 20);
-            point3 = new PointF(kaidoBody.X - 5, kaidoBody.Y - 20);
-            //e.Graphics.FillPolygon(kaidoBrush, new PointF[] { point, point1, point2, point3 });
-            //kaidoBrush.Color = Color.Green;
-            //e.Graphics.FillEllipse(kaidoBrush, kaidoBody.X - 18, kaidoBody.Y - 22, 15, 15);
+            point2 = new PointF(kaidoBody.X - 15, kaidoBody.Y);
+            point1 = new PointF(kaidoBody.X - 40, kaidoBody.Y);
+            point = new PointF(kaidoBody.X - 40, kaidoBody.Y - 15);
+            point3 = new PointF(kaidoBody.X - 15, kaidoBody.Y - 10);
+            e.Graphics.FillPolygon(kaidoBrush, new PointF[] { point, point1, point2, point3 });
+            e.Graphics.FillEllipse(kaidoBrush, kaidoBody.X - 18, kaidoBody.Y - 11, 10, 10);
+            //teeth
+            kaidoBrush.Color = Color.AntiqueWhite;
+            //upper
+            point2 = new PointF(kaidoBody.X - 10, kaidoBody.Y - 5);
+            point1 = new PointF(kaidoBody.X - 40, kaidoBody.Y - 10);
+            point = new PointF(kaidoBody.X - 40, kaidoBody.Y - 15);
+            point3 = new PointF(kaidoBody.X - 10, kaidoBody.Y - 10);
+            e.Graphics.FillPolygon(kaidoBrush, new PointF[] { point, point1, point2, point3 });
+            //lower
+            point2 = new PointF(kaidoBody.X - 10, kaidoBody.Y + 5 - 12);
+            point1 = new PointF(kaidoBody.X - 40, kaidoBody.Y + 10 - 12);
+            point = new PointF(kaidoBody.X - 40, kaidoBody.Y + 15 - 12);
+            point3 = new PointF(kaidoBody.X - 10, kaidoBody.Y + 10 - 12);
+            e.Graphics.FillPolygon(kaidoBrush, new PointF[] { point, point1, point2, point3 });
+            //horns
+            //top horn
+            point2 = new PointF(kaidoBody.X + 15, kaidoBody.Y - 57);
+            point1 = new PointF(kaidoBody.X + 10, kaidoBody.Y - 40);
+            point = new PointF(kaidoBody.X , kaidoBody.Y  - 40);
+            point3 = new PointF(kaidoBody.X + 10, kaidoBody.Y - 60);
+            e.Graphics.FillPolygon(kaidoBrush, new PointF[] { point, point1, point2, point3});
+            point2 = new PointF(kaidoBody.X + 15, kaidoBody.Y - 57);
+            point1 = new PointF(kaidoBody.X + 23, kaidoBody.Y - 70);
+            point = new PointF(kaidoBody.X + 7, kaidoBody.Y  - 57);
+            e.Graphics.FillPolygon(kaidoBrush, new PointF[] { point, point1, point2});
+            //side horn
+            point2 = new PointF(kaidoBody.X + 50, kaidoBody.Y - 20);
+            point1 = new PointF(kaidoBody.X + 10, kaidoBody.Y - 35);
+            point = new PointF(kaidoBody.X + 10, kaidoBody.Y  - 25);
+            e.Graphics.FillPolygon(kaidoBrush, new PointF[] { point, point1, point2});
+            //eye
+            kaidoBrush.Color = Color.FromArgb(255, 255, 0, 0);
+            e.Graphics.FillPie(kaidoBrush, kaidoBody.X - 20, kaidoBody.Y - 35, 15, 15, 150, -180);
+            //moustache
+            kaidoPen.Color = Color.Black;
+            kaidoPen.Width = 3;
+            e.Graphics.DrawLine(kaidoPen, kaidoBody.X - 30, kaidoBody.Y - 20, kaidoBody.X - 5, kaidoBody.Y + 20);
         }
     }
 }   
