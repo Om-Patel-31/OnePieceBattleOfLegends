@@ -30,6 +30,19 @@ namespace OnePieceBattleOfLegends
     public partial class Form1 : Form
     {
         //Global Variables
+        int luffyHP = 100;
+        int kaidoHP = 100;
+        int luffyMoveHP = 10;
+        int kaidoMoveHP = 10;
+        int luffyUltimateHP = 100;
+        int kaidoUltimateHP = 100;
+        bool zPressed = false;
+        bool xPressed = false;
+        bool kPressed = false;
+        bool lPressed = false;
+
+        //random
+        Random hit = new Random();
 
         //Rectangles
         Rectangle ground = new Rectangle(0, 333, 800, 30);
@@ -67,10 +80,43 @@ namespace OnePieceBattleOfLegends
             point3 = new PointF(kaidoBody.X+25, kaidoBody.Y + 170);
         }
 
+        private void Form1_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode) 
+            {
+                case Keys.Z:
+                    zPressed = true;
+                    break;
+                case Keys.X:
+                    xPressed = true;
+                    break;
+            }
+        }
+
+        private void Form1_KeyUp(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Z:
+                    zPressed = false;
+                    break;
+                case Keys.X:
+                    xPressed = false;
+                    break;
+            }
+        }
 
         private void gameTimer_Tick(object sender, EventArgs e)
         {
-
+            if (zPressed == true)
+            {
+                kaidoHP -= luffyMoveHP;
+            }
+            if (xPressed == true)
+            {
+                kaidoHP -= luffyUltimateHP;
+            }
+            //Refresh();
         }
 
         private void Form1_Paint(object sender, PaintEventArgs e)
@@ -84,9 +130,6 @@ namespace OnePieceBattleOfLegends
 
             //Kaido
             kaidoPen.Width = 1;
-
-            //Ground
-            e.Graphics.FillRectangle(groundBrush, ground);
 
             // Create image.
             Image newImage = Properties.Resources.bg;
@@ -287,6 +330,106 @@ namespace OnePieceBattleOfLegends
             kaidoPen.Color = Color.Black;
             kaidoPen.Width = 3;
             e.Graphics.DrawLine(kaidoPen, kaidoBody.X - 30, kaidoBody.Y - 20, kaidoBody.X - 5, kaidoBody.Y + 20);
+
+            //name
+            newFont = new Font("ONE PIECE", 20);
+            //luffy
+            e.Graphics.DrawString("Luffy", newFont, fontBrush, 5, 5);
+            e.Graphics.DrawString("Kaido", newFont, fontBrush, 730, 5);
+            //health bar
+            kaidoPen.Color = Color.White;
+            kaidoPen.Width = 3;
+            kaidoBrush.Color = Color.YellowGreen;
+            e.Graphics.FillRectangle(kaidoBrush, kaidoBody.X - 610, kaidoBody.Y - 135, 100, 10);
+            e.Graphics.DrawRectangle(kaidoPen, kaidoBody.X - 610, kaidoBody.Y - 135, 100, 10);
+            e.Graphics.FillRectangle(kaidoBrush, kaidoBody.X + 65, kaidoBody.Y - 135, 100, 10);
+            e.Graphics.DrawRectangle(kaidoPen, kaidoBody.X + 65, kaidoBody.Y - 135, 100, 10);
+            //attacks
+            //normal move
+            if (zPressed == true)
+            {
+                //Luffy
+                //luffy rectangle
+                luffyPen.Width = 1;
+                luffyPen.Color = Color.Transparent;
+                e.Graphics.DrawRectangle(luffyPen, luffyBody.X - 13, luffyBody.Y - 36, luffyBody.Width + 40, luffyBody.Height + 73);
+                //sleeve-left
+                luffyPen.Width = 10;
+                luffyPen.Color = Color.FromArgb(255, 192, 51, 60);
+                e.Graphics.DrawLine(luffyPen, luffyBody.X + luffyBody.Width - 3, luffyBody.Y + 7, luffyBody.X + luffyBody.Width + 10, luffyBody.Y + 7);
+                //body
+                luffyBrush.Color = Color.FromArgb(255, 238, 184, 146);
+                e.Graphics.FillRectangle(luffyBrush, luffyBody);
+                //legs
+                luffyPen.Color = Color.FromArgb(255, 238, 184, 146);
+                luffyPen.Width = 5;
+                //right
+                e.Graphics.DrawLine(luffyPen, 118, 310, 112, 330);
+                e.Graphics.DrawLine(luffyPen, 110, 330, 120, 330);
+                //left
+                e.Graphics.DrawLine(luffyPen, 135, 310, 141, 330);
+                e.Graphics.DrawLine(luffyPen, 140, 330, 150, 330);
+                //pant
+                luffyPen.Width = 7;
+                luffyPen.Color = Color.FromArgb(255, 228, 228, 228);
+                e.Graphics.DrawLine(luffyPen, 125, 290, luffyBody.X - 5, luffyBody.Y + 60);
+                e.Graphics.DrawLine(luffyPen, 130, 290, luffyBody.X + 19, luffyBody.Y + 60);
+                //hat
+                luffyBrush.Color = Color.FromArgb(255, 235, 200, 95);
+                e.Graphics.FillEllipse(luffyBrush, luffyBody.X - 3, luffyBody.Y - 35, luffyBody.Width + 10, luffyBody.Height - 10);
+                //pant overlay
+                luffyPen.Width = 10;
+                luffyPen.Color = Color.FromArgb(255, 80, 108, 181);
+                e.Graphics.DrawLine(luffyPen, 125, 290, luffyBody.X - 3, luffyBody.Y + 55);
+                e.Graphics.DrawLine(luffyPen, 130, 290, luffyBody.X + 17, luffyBody.Y + 55);
+                //shirt
+                luffyBrush.Color = Color.FromArgb(255, 192, 51, 60);
+                e.Graphics.FillRectangle(luffyBrush, luffyBody.X, luffyBody.Y, luffyBody.Width - 5, luffyBody.Height + 2);
+                luffyBrush.Color = Color.FromArgb(255, 236, 209, 75);
+                e.Graphics.FillRectangle(luffyBrush, luffyBody.X, luffyBody.Y + 30, luffyBody.Width + 2, luffyBody.Height - 28);
+                //sleeves
+                luffyPen.Color = Color.FromArgb(255, 192, 51, 60);
+                luffyPen.Width = 7;
+                //right
+                e.Graphics.DrawLine(luffyPen, luffyBody.X + 3, luffyBody.Y + 7, luffyBody.X - 7, luffyBody.Y + 30);
+                //hand
+                luffyPen.Width = 5;
+                //right
+                luffyBrush.Color = Color.FromArgb(255, 238, 184, 146);
+                luffyPen.Color = Color.FromArgb(255, 238, 184, 146);
+                e.Graphics.DrawLine(luffyPen, luffyBody.X - 7, luffyBody.Y + 30, luffyBody.X - 10, luffyBody.Y + 35);
+                e.Graphics.DrawLine(luffyPen, luffyBody.X - 12, luffyBody.Y + 35, luffyBody.X - 7, luffyBody.Y + 38);
+                //left
+                //head
+                luffyPen.Color = Color.FromArgb(100, 50, 50, 50);
+                luffyPen.Width = 20;
+                e.Graphics.DrawArc(luffyPen, luffyBody.X + 7, luffyBody.Y - 25, 10, 15, 80, 105);
+                luffyPen.Color = Color.FromArgb(255, 238, 184, 146);
+                e.Graphics.DrawArc(luffyPen, luffyBody.X + 17, luffyBody.Y - 25, 7, 15, 85 + 5, 95);
+                //hair
+                luffyPen.Color = Color.Black;
+                e.Graphics.DrawArc(luffyPen, luffyBody.X + 7, luffyBody.Y - 18, 3, 1, -300, 200);
+                e.Graphics.DrawArc(luffyPen, luffyBody.X + 5, luffyBody.Y - 20, 1, 5, 20, 70);
+                e.Graphics.DrawArc(luffyPen, luffyBody.X + 10, luffyBody.Y - 23, 1, 5, 20, 70);
+                e.Graphics.DrawArc(luffyPen, luffyBody.X + 15, luffyBody.Y - 18, 1, 3, 20, 70);
+                //whiteout
+                luffyBrush.Color = Color.Transparent;
+                e.Graphics.FillRectangle(luffyBrush, luffyBody.X - 15, luffyBody.Y - 35, luffyBody.Width - 1, luffyBody.Height - 10);
+                //hat
+                luffyBrush.Color = Color.FromArgb(255, 235, 200, 95);
+                e.Graphics.FillEllipse(luffyBrush, luffyBody.X - 7, luffyBody.Y - 25, luffyBody.Width + 20, luffyBody.Height - 25);
+                luffyBrush.Color = Color.FromArgb(255, 192, 51, 60);
+                e.Graphics.FillRectangle(luffyBrush, luffyBody.X - 1, luffyBody.Y - 27, luffyBody.Width + 7, luffyBody.Height - 30);
+                //footwear
+                luffyBrush.Color = Color.FromArgb(255, 215, 190, 149);
+                luffyPen.Color = Color.Black;
+                luffyPen.Width = 1;
+                e.Graphics.FillRectangle(luffyBrush, 108, 330, 14, 3);
+                e.Graphics.DrawRectangle(luffyPen, 108, 330, 14, 3);
+                e.Graphics.FillRectangle(luffyBrush, 138, 330, 14, 3);
+                e.Graphics.DrawRectangle(luffyPen, 138, 330, 14, 3);
+            }
+            //ultimate move
         }
     }
 }   
